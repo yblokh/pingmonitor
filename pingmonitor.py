@@ -29,7 +29,7 @@ def check_host(host, status_dict):
 
     elif result is not None:
         if status_dict[host]['status'] != 'up':
-            if status_dict[host]['status'] == 'down':
+            if status_dict[host]['status'] == 'down' and status_dict[host]['down_counter'] >= 3:
                 message = host+" is up!"
                 logging.info(f"{message}")
                 send_telegram_message(chat_id, message, bot_api_key)
